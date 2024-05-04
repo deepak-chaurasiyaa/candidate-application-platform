@@ -14,7 +14,7 @@ import API from '../axios';
  * @param {number} params.limit - Number of items per page
  * @returns {Promise} - Promise representing the fetched data
  */
-export const fetchData = async ({ page = 1, limit = 10 }) => {
+export const fetchJobDetails = async ({ page = 1, limit = 10 }) => {
 	try {
 		// Prepare request body
 		const data = {
@@ -24,15 +24,15 @@ export const fetchData = async ({ page = 1, limit = 10 }) => {
 
 		// Send request to API
 		const response = await API.post('/adhoc/getSampleJdJSON', data);
-		return response.data;
+		return response;
 	} catch (error) {
 		// Handle error
 		throw error;
 	}
 };
 
-// PropTypes for fetchData function
-fetchData.propTypes = {
+// PropTypes for fetchJobDetails function
+fetchJobDetails.propTypes = {
 	page: PropTypes.number,
 	limit: PropTypes.number,
 };

@@ -4,13 +4,17 @@ import { Suspense } from 'react';
 
 import Layout from './components/layout/Layout.jsx';
 
+import { Routing } from './routes/Routing.jsx';
+
 import '../src/assets/css/style.css';
 
 function App() {
 	return (
 		<div className='pageWrapper'>
 			<Suspense fallback={<div className='container'>Loading...</div>}>
-				<Layout></Layout>
+				<Layout>
+					<Routing />
+				</Layout>
 			</Suspense>
 		</div>
 	);
