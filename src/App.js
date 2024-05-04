@@ -11,7 +11,7 @@ import '../src/assets/css/style.css';
 function App() {
 	return (
 		<div className='pageWrapper'>
-			<Suspense fallback={<div className='container'>Loading...</div>}>
+			<Suspense>
 				<Layout>
 					<Routing />
 				</Layout>

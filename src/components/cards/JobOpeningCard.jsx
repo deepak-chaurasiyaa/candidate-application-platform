@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, Typography, Button, Box } from '@mui/material';
+import ReferralRequest from '../refferal/ReferralRequest';
 
 const JobOpeningCard = ({ company, position, location, salary, experience, responsibilities, skills, link }) => {
     const [expanded, setExpanded] = useState(false);
@@ -60,7 +61,14 @@ const JobOpeningCard = ({ company, position, location, salary, experience, respo
                     <Typography >Minimum Experience</Typography>
                     <Typography >2 Years</Typography>
                 </Box>
+                <Box className="apply-option">
+                    <Button>
+                        ⚡ Easy Apply
+                    </Button>
+                </Box>
+                <ReferralRequest />
             </Box>
+
         </Box>
     );
 };

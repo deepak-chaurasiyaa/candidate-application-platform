@@ -24,6 +24,7 @@ export const fetchJobDetails = async ({ page = 1, limit = 10 }) => {
 
 		// Send request to API
 		const response = await API.post('/adhoc/getSampleJdJSON', data);
+		
 		return response;
 	} catch (error) {
 		// Handle error
