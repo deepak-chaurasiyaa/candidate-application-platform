@@ -8,6 +8,8 @@ In the project directory, you can run:
 
 ### `npm start`
 
+OR Check the deployed Link : [https://papaya-basbousa-79d410.netlify.app/](https://papaya-basbousa-79d410.netlify.app/)
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
