@@ -3,31 +3,37 @@ import { fetchJobDetails } from '../utils/api/api';
 import JobOpeningCard from './cards/JobOpeningCard';
 import { Box } from '@mui/material';
 import { LoaderComponent } from './loader/Loader';
+import { setHasMore, setLoading, setjobListDetails } from '../redux/slice/jobSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import FilterjobApplication from './FilterjobApplication';
 
-function CandiateApplication() {
-    const [jobs, setJobs] = useState([]);
+function CandidateApplication() {
+    const dispatch = useDispatch();
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
+
+    const { jobList, hasMore, loading } = useSelector((state) => state.job);
+
     const observer = useRef();
 
     const fetchJobData = async () => {
         try {
-            setLoading(true);
+            dispatch(setLoading(true));
             const { jdList, totalCount } = await fetchJobDetails({ page, limit: 10 });
-            setJobs(prevJobs => [...prevJobs, ...jdList]);
-            setHasMore(jobs.length < totalCount);
+
+            dispatch(setjobListDetails([...jobList, ...jdList]));
+            dispatch(setHasMore(jobList.length < totalCount));
+
             setPage(prevPage => prevPage + 1);
-            setLoading(false);
+            dispatch(setLoading(false));
         } catch (error) {
+            dispatch(setLoading(false));
             console.log({ error: error.message });
-            setLoading(false);
         }
     };
 
     useEffect(() => {
         fetchJobData();
-    }, []);
+    }, [dispatch]); // Added dispatch as dependency
 
     useEffect(() => {
         if (!loading && hasMore) {
@@ -53,23 +59,16 @@ function CandiateApplication() {
                 observer.current.disconnect();
             }
         };
-    }, [loading, hasMore]);
+    }, [loading, hasMore, dispatch]); // Added dispatch as dependency
+
+    console.log({ jobList });
 
     return (
         <Box className='job-container'>
+            <FilterjobApplication />
             <Box className="cards-listing">
-                {jobs.map((job, index) => (
-                    <JobOpeningCard
-                        key={index}
-                        company={job.company}
-                        position={job.position}
-                        location={job.location}
-                        salary={job.salary}
-                        experience={job.experience}
-                        responsibilities={job.responsibilities}
-                        skills={job.skills}
-                        link={job.link}
-                    />
+                {jobList.map((job) => (
+                    <JobOpeningCard key={job.id} jobDetails={job} />
                 ))}
                 <Box display="flex" justifyContent="center" alignItems="center" width="100%" minHeight="200px">
                     {loading && <LoaderComponent />}
@@ -80,4 +79,4 @@ function CandiateApplication() {
     );
 }
 
-export default CandiateApplication;
+export default CandidateApplication;

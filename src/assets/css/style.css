@@ -45,6 +45,7 @@
 .company-logo {
     width: 30px;
     height: 3rem;
+    border: 0.5px solid rgb(231, 222, 222);
 }
 
 
