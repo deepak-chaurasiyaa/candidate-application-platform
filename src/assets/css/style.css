@@ -34,13 +34,30 @@
     height: 100%;
 }
 
-.flex {
+.flex,
+.filter-job {
     display: flex;
 }
 
 .spcae-between {
     justify-content: space-between;
 }
+
+.filter-field {
+    min-width: 170px;
+    padding: 0px 10px 10px 10px;
+    margin-bottom: 20px; /* Add margin between each filter field */
+}
+
+.company-name-search input,.company-name-search input:focus{
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 5px;
+    padding: 10px;
+}
+.company-name-search input:focus{
+    margin-top: 0px !important;
+}
+
 
 .company-logo {
     width: 30px;
@@ -65,7 +82,7 @@
     font-weight: 500;
 }
 
-.apply-option button {
+.apply-option button,.apply-option button:hover {
     width: 100%;
     background-color: rgb(85, 239, 196);
     color: rgb(0, 0, 0);
@@ -77,6 +94,27 @@
     .job-card {
         flex: 0 0 calc(50% - 30px);
     }
+
+    .filter-job {
+        flex-direction: column;
+    }
+
+    .filter-field {
+        margin-bottom: 0px;
+        padding-bottom: 5px;
+        min-width: calc(100% - 10px);
+        /* Set to 100% for screens up to 768px */
+    }
+    .company-name-search input{
+        min-width: calc(100% - 20px);
+    }
+}
+.formHead{
+    position: relative;
+}
+label{
+    margin: 5px;
+    padding: 2px;
 }
 
 @media screen and (max-width: 480px) {
@@ -87,6 +125,21 @@
     .date-posted {
         width: 40%;
         margin: 20px !important;
+    }
+
+    .filter-job {
+        flex-direction: column;
+    }
+
+    .filter-field {
+        min-width: calc(100% - 10px);
+        margin-bottom: 0px;
+        padding-bottom: 5px;
+        /* Set to 100% for screens up to 480px */
+    }
+    .company-name-search input{
+        min-width: calc(100% - 20px);
+        margin-bottom: 20px;
     }
 }
 

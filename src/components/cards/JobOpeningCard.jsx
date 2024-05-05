@@ -1,10 +1,19 @@
 import React, { useRef } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import ReferralRequest from '../refferal/ReferralRequest';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const JobOpeningCard = ({ jobDetails }) => {
+    const navigate = useNavigate()
+
+    const handleEasyApply = () => {
+        // Check if jobDetails.jdLink exists before navigating
+        if (jobDetails.jdLink) {
+            window.open(jobDetails.jdLink, '_blank');
+        } 
+    };
+
     const descriptionRef = useRef(null);
-    console.log(jobDetails)
     return (
         <Box className="job-card" key={jobDetails.jdUid}>
             <Box className="card">
@@ -35,7 +44,7 @@ const JobOpeningCard = ({ jobDetails }) => {
                     <Typography >About us:</Typography>
                     <Typography className='compay-description'>{jobDetails.jobDetailsFromCompany}</Typography>
 
-                    <div className="view-more-button">View Job</div>
+                    <div className="view-more-button"><Link target='#' to={jobDetails.jdLink}>View Job</Link></div>
 
                 </Box>
                 <Box className="required-experience">
@@ -43,7 +52,7 @@ const JobOpeningCard = ({ jobDetails }) => {
                     <Typography >{jobDetails.minExp} Years</Typography>
                 </Box>
                 <Box className="apply-option">
-                    <Button>
+                    <Button onClick={handleEasyApply}>
                         ⚡ Easy Apply
                     </Button>
                 </Box>

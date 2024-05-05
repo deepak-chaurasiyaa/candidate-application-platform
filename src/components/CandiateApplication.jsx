@@ -61,11 +61,9 @@ function CandidateApplication() {
         };
     }, [loading, hasMore, dispatch]); // Added dispatch as dependency
 
-    console.log({ jobList });
-
     return (
         <Box className='job-container'>
-            <FilterjobApplication />
+            <FilterjobApplication/>
             <Box className="cards-listing">
                 {jobList.map((job) => (
                     <JobOpeningCard key={job.id} jobDetails={job} />
