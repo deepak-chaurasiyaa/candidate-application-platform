@@ -101,7 +101,7 @@
 
     .filter-field {
         margin-bottom: 0px;
-        padding-bottom: 5px;
+        padding-bottom: 2px;
         min-width: calc(100% - 10px);
         /* Set to 100% for screens up to 768px */
     }
@@ -134,7 +134,7 @@ label{
     .filter-field {
         min-width: calc(100% - 10px);
         margin-bottom: 0px;
-        padding-bottom: 5px;
+        padding-bottom: 2px;
         /* Set to 100% for screens up to 480px */
     }
     .company-name-search input{
